@@ -1,0 +1,39 @@
+import React, { Component } from "react";
+import logo from "../images/SevaCode_Logo.png";
+
+const homeStyles = {
+    layout: {
+        display: "flex",
+        flexDirection: "column",
+        width: "100%",
+        height: "100%",
+    },
+    logo: {
+        margin: "0 auto",
+        width: 550,
+        height: 175,
+    }
+}
+
+class Home extends Component {
+    render(){
+        return (
+            <div
+                style={homeStyles.layout}
+            >
+                <img 
+                    src={logo}
+                    style={
+                        homeStyles.logo
+                    }
+                    alt="Sevacode"
+                />
+                <h1>
+                    What we are
+                </h1>
+            </div>
+        )
+    }
+}
+
+export default Home;
