@@ -4,7 +4,7 @@ import logo from "../images/SevaCode_Logo.png";
 const homeStyles = {
     layout: {
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         width: "100%",
         height: "100%",
     },
