@@ -5,12 +5,11 @@ import gf from "../images/gf.jpeg";
 import sd from "../images/sd.jpeg";
 import yp from "../images/yp.jpeg";
 
-
 const aboutUsStyles = {
     sectionLine: {
         backgroundColor: "yellow",
         color: "yellow",
-        width: "60%"
+        width: "65%"
     },
     layout: {
         display: "flex",
@@ -33,34 +32,59 @@ const aboutUsStyles = {
         alignItems: "center",
         justifyContent: "center",
         margin: "0 auto",
-        width: "45%",
+        width: "60%",
     },
-    faceDiv: {
+    facesDiv: {
         display: "flex",
+        flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 15,
-        width: "90%",
+        width: "100%",
     },
     facesIndividual: {
         padding: 5,
-        margin: "auto",
-        float: "left",
-        width: "20%",
+        marginTop: 20,
+        width: "15%",
+    },
+    namesDiv: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "100%",
     }
 }
 class AboutUs extends Component {
+
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+        this.state = {
+            isClicked: false,
+        };
+    }
+
+    handleClick(e) {
+        e.preventDefault();
+        console.log("face clicked");
+        this.setState(this.toggleClickState);
+    }
+
+    toggleClickState(state) {
+        return {
+            isClicked: !state.isClicked,
+        };
+    }
+
     render() {
         return (
-            <div>
-                {/* div for section line */}
+            <section>
                 <div>
                     <hr
                         style={aboutUsStyles.sectionLine}
                     />
                 </div>
 
-                {/* section content */}
                 <div>
                     <h2
                         style={aboutUsStyles.headers}
@@ -75,12 +99,13 @@ class AboutUs extends Component {
                     </p>
 
                     <div
-                        style={aboutUsStyles.faceDiv}
+                        style={aboutUsStyles.facesDiv}
                     >
                         <img
                             src={bg}
                             style={aboutUsStyles.facesIndividual}
                             alt="Bahadur Ghataorhe"
+                            onClick={this.handleClick}
                         />
                         <img
                             src={sg}
@@ -103,8 +128,19 @@ class AboutUs extends Component {
                             alt="Yogi Patel"
                         />
                     </div>
+
+                    <div
+                        style={aboutUsStyles.namesDiv}
+                    >
+                        {
+                            this.state.isClicked &&
+                            <h4>
+                                Bahadur Ghataorhe
+                            </h4>
+                        }
+                    </div>
                 </div>
-            </div>
+            </section>
 
         )
     }
