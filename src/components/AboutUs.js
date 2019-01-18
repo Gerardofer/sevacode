@@ -35,31 +35,33 @@ const aboutUsStyles = {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        opacity: 1,
     },
-    facesIndividual: {
-        padding: 5,
-        flexDirection: "column",
-        marginTop: 20,
-        width: "15%",
-    },
+    // facesIndividual: {
+    //     padding: 5,
+    //     flexDirection: "column",
+    //     marginTop: 20,
+    //     width: "15%",
+    // },
 }
 
 class AboutUs extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            opacity: 0.5,
-        };
+            opacity: 1,
+            padding: 5,
+            flexDirection: "column",
+            marginTop: 20,
+            width: "15%",
+        }
         this.mouseEnter = this.mouseEnter.bind(this);
         this.mouseLeave = this.mouseLeave.bind(this);
-        this.namePop = this.namePop.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     mouseEnter() {
         console.log("mouse entered");
-        this.setState({ opacity: 0.6 })
-        this.namePop();
+        this.setState({ opacity: 0.5 })
     }
 
     mouseLeave() {
@@ -67,16 +69,26 @@ class AboutUs extends Component {
         this.setState({ opacity: 1 })
     }
 
-    namePop() {
-        alert("name pop, bitch");
+    handleClick() {
+        this.setState({ opacity: 0.5 })
     }
 
     render() {
         let pics = ["bg", "sg", "gf", "sd", "yp"];
 
         let images = pics.map(image => {
-            return <img key={image} {...this.state.opacity} style={aboutUsStyles.facesIndividual} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} src={require(`../images/${image}.jpeg`)} alt="" />
+            return <img
+                key={image}
+                style={this.state}
+                onClick={() => this.handleClick(image)}
+                onMouseOver={() => this.mouseEnter(image)}
+                onMouseOut={() => this.mouseLeave(image)}
+                src={require(`../images/${image}.jpeg`)
+                }
+                alt=""
+            />
         })
+
         return (
             <section>
                 <div>
