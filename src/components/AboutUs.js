@@ -1,9 +1,4 @@
 import React, { Component } from "react";
-import bg from "../images/bg.jpeg";
-import sg from "../images/sg.jpeg";
-import gf from "../images/gf.jpeg";
-import sd from "../images/sd.jpeg";
-import yp from "../images/yp.jpeg";
 
 const aboutUsStyles = {
     sectionLine: {
@@ -40,43 +35,48 @@ const aboutUsStyles = {
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
+        opacity: 1,
     },
     facesIndividual: {
         padding: 5,
+        flexDirection: "column",
         marginTop: 20,
         width: "15%",
     },
-    namesDiv: {
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "100%",
-    }
 }
-class AboutUs extends Component {
 
+class AboutUs extends Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
         this.state = {
-            isClicked: false,
+            opacity: 0.5,
         };
+        this.mouseEnter = this.mouseEnter.bind(this);
+        this.mouseLeave = this.mouseLeave.bind(this);
+        this.namePop = this.namePop.bind(this);
     }
 
-    handleClick(e) {
-        e.preventDefault();
-        console.log("face clicked");
-        this.setState(this.toggleClickState);
+    mouseEnter() {
+        console.log("mouse entered");
+        this.setState({ opacity: 0.6 })
+        this.namePop();
     }
 
-    toggleClickState(state) {
-        return {
-            isClicked: !state.isClicked,
-        };
+    mouseLeave() {
+        console.log("mouse left");
+        this.setState({ opacity: 1 })
+    }
+
+    namePop() {
+        alert("name pop, bitch");
     }
 
     render() {
+        let pics = ["bg", "sg", "gf", "sd", "yp"];
+
+        let images = pics.map(image => {
+            return <img key={image} {...this.state.opacity} style={aboutUsStyles.facesIndividual} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave} src={require(`../images/${image}.jpeg`)} alt="" />
+        })
         return (
             <section>
                 <div>
@@ -101,44 +101,9 @@ class AboutUs extends Component {
                     <div
                         style={aboutUsStyles.facesDiv}
                     >
-                        <img
-                            src={bg}
-                            style={aboutUsStyles.facesIndividual}
-                            alt="Bahadur Ghataorhe"
-                            onClick={this.handleClick}
-                        />
-                        <img
-                            src={sg}
-                            style={aboutUsStyles.facesIndividual}
-                            alt="Sofiane Guerfi"
-                        />
-                        <img
-                            src={gf}
-                            style={aboutUsStyles.facesIndividual}
-                            alt="Gerardo Fernandez"
-                        />
-                        <img
-                            src={sd}
-                            style={aboutUsStyles.facesIndividual}
-                            alt="Sandon Du"
-                        />
-                        <img
-                            src={yp}
-                            style={aboutUsStyles.facesIndividual}
-                            alt="Yogi Patel"
-                        />
+                        {images}
                     </div>
 
-                    <div
-                        style={aboutUsStyles.namesDiv}
-                    >
-                        {
-                            this.state.isClicked &&
-                            <h4>
-                                Bahadur Ghataorhe
-                            </h4>
-                        }
-                    </div>
                 </div>
             </section>
 
