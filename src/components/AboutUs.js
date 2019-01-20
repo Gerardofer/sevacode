@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+import bg from "../images/bg.jpeg";
+import sd from "../images/sd.jpeg";
+import sg from "../images/sg.jpeg";
+import gf from "../images/gf.jpeg";
+import yp from "../images/yp.jpeg";
+
 
 const aboutUsStyles = {
     sectionLine: {
@@ -36,58 +42,88 @@ const aboutUsStyles = {
         justifyContent: "center",
         width: "100%",
     },
-    // facesIndividual: {
-    //     padding: 5,
-    //     flexDirection: "column",
-    //     marginTop: 20,
-    //     width: "15%",
-    // },
+    facesIndividual: {
+        padding: 5,
+        flexDirection: "column",
+        marginTop: 20,
+        width: "15%",
+    },
+    withOpacity: {
+        padding: 5,
+        flexDirection: "column",
+        marginTop: 20,
+        width: "15%",
+        opacity: 0.5
+    },
 }
 
 class AboutUs extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            opacity: 1,
-            padding: 5,
-            flexDirection: "column",
-            marginTop: 20,
-            width: "15%",
-        }
-        this.mouseEnter = this.mouseEnter.bind(this);
-        this.mouseLeave = this.mouseLeave.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         opacity: 1,
+    //         padding: 5,
+    //         flexDirection: "column",
+    //         marginTop: 20,
+    //         width: "15%",
+    //     }
+    //     this.mouseEnter = this.mouseEnter.bind(this);
+    //     this.mouseLeave = this.mouseLeave.bind(this);
+    //     this.handleClick = this.handleClick.bind(this);
+    // }
+    state = {
+        hover: false
     }
 
-    mouseEnter() {
-        console.log("mouse entered");
-        this.setState({ opacity: 0.5 })
+    // mouseEnter() {
+    //     console.log("mouse entered");
+    //     this.setState({ opacity: 0.5 })
+    // }
+
+    // mouseLeave() {
+    //     console.log("mouse left");
+    //     this.setState({ opacity: 1 })
+    // }
+
+    // handleClick() {
+    //     this.setState({ opacity: 0.5 })
+    // }
+
+    componentDidMount() {
+        window.addEventListener("mouseover", this.handleMouseEnter);
     }
 
-    mouseLeave() {
-        console.log("mouse left");
-        this.setState({ opacity: 1 })
+    componentWillUnmount() {
+        window.removeEventListener("mouseout", this.handleMouseOut);
     }
 
-    handleClick() {
-        this.setState({ opacity: 0.5 })
+    handleMouseEnter = (event) => {
+        console.log(event);
+        // this.setState({
+        //     hover: true,
+        // })
+    }
+
+    handleMouseOut = () => {
+        console.log("leaving");
+        this.setState({
+            hover: false,
+        })
     }
 
     render() {
-        let pics = ["bg", "sg", "gf", "sd", "yp"];
+        // let pics = ["bg", "sg", "gf", "sd", "yp"];
 
-        let images = pics.map(image => {
-            return <img
-                key={image}
-                style={this.state}
-                onClick={() => this.handleClick(image)}
-                onMouseOver={() => this.mouseEnter(image)}
-                onMouseOut={() => this.mouseLeave(image)}
-                src={require(`../images/${image}.jpeg`)
-                }
-                alt=""
-            />
-        })
+        // let imageArray = images.map(image => {
+        //     return (
+        //         < img
+        //             key={image.id}
+        //             style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
+        //             src={image.img}
+        //             alt={image.id}
+        //         />
+        //     )
+        // });
 
         return (
             <section>
@@ -112,13 +148,43 @@ class AboutUs extends Component {
 
                     <div
                         style={aboutUsStyles.facesDiv}
+                        mouseon={this.handleMouseEnter}
+                        mouseoff={this.handleMouseOut}
                     >
-                        {images}
+                        <img
+                            src={bg}
+                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
+                        // mouseon={this.handleMouseEnter}
+                        // mouseoff={this.handleMouseOut}
+                        />
+                        <img
+                            src={sd}
+                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
+                        // mouseon={this.handleMouseEnter}
+                        // mouseoff={this.handleMouseOut}
+                        />
+                        <img
+                            src={sg}
+                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
+                        // mouseon={this.handleMouseEnter}
+                        // mouseoff={this.handleMouseOut}
+                        />
+                        <img
+                            src={gf}
+                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
+                        // mouseon={this.handleMouseEnter}
+                        // mouseoff={this.handleMouseOut}
+                        />
+                        <img
+                            src={yp}
+                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
+                        // mouseon={this.handleMouseEnter}
+                        // mouseoff={this.handleMouseOut}
+                        />
                     </div>
 
                 </div>
-            </section>
-
+            </section >
         )
     }
 }
