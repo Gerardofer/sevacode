@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from "../images/SevaCode_Logo.png";
+import CaseStudy from "./CaseStudy";
 
 const homeStyles = {
     layout: {
@@ -28,9 +29,7 @@ class Home extends Component {
                     }
                     alt="Sevacode"
                 />
-                <h1>
-                    What we are
-                </h1>
+                <CaseStudy />
             </div>
         )
     }
