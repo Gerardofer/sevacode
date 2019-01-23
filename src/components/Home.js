@@ -16,21 +16,18 @@ const homeStyles = {
 }
 
 class Home extends Component {
-    render(){
+    render() {
         return (
             <div
                 style={homeStyles.layout}
             >
-                <img 
+                <img
                     src={logo}
                     style={
                         homeStyles.logo
                     }
                     alt="Sevacode"
                 />
-                <h1>
-                    What we are
-                </h1>
             </div>
         )
     }
