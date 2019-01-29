@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from 'react-bootstrap';
+// import { Row, Col } from 'react-bootstrap';
 // import bg from "../images/bg.jpeg";
 // import sd from "../images/sd.jpeg";
 // import sg from "../images/sg.jpeg";
@@ -61,19 +61,6 @@ const aboutUsStyles = {
 }
 
 class AboutUs extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         opacity: 1,
-    //         padding: 5,
-    //         flexDirection: "column",
-    //         marginTop: 20,
-    //         width: "15%",
-    //     }
-    //     this.mouseEnter = this.mouseEnter.bind(this);
-    //     this.mouseLeave = this.mouseLeave.bind(this);
-    //     this.handleClick = this.handleClick.bind(this);
-    // }
     // state = {
     //     hover: false
     // }
@@ -118,18 +105,18 @@ class AboutUs extends Component {
 
         let pics = ["bg", "sg", "gf", "sd", "yp"];
         let bio = ["Bahadur Ghataorhe", "Sofiane Guerfus", "Gerardo Fernandez", "Sandon Du", "Yogi Patel"];
-        let imageArray = pics.map((value, index) => {
-            const picsBio = bio[index];
+        let contentArray = pics.map((picValue, index) => {
+            const fullName = bio[index];
             return (
                 <div>
                     < img
-                        key={value}
+                        key={picValue}
                         style={aboutUsStyles.facesIndividual}
-                        src={require(`../images/${value}.jpeg`)}
-                        alt={value}
+                        src={require(`../images/${picValue}.jpeg`)}
+                        alt={picValue}
                     />
                     <div style={aboutUsStyles.facesDiv}>
-                        {`${picsBio}`}
+                        {`${fullName}`}
                     </div>
                 </div>
             )
@@ -158,33 +145,7 @@ class AboutUs extends Component {
                     <div
                         style={aboutUsStyles.facesDiv}
                     >
-                        {imageArray}
-                        {/* <img
-                            src={bg}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                            alt="bg"
-                        />
-                        <img
-                            src={sd}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                            alt="sd"
-                        />
-                        <img
-                            src={sg}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                            alt="sg"
-                        />
-                        <img
-                            src={gf}
-                            style={this.state.hover === true ?
-                                aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                            alt="gf"
-                        />
-                        <img
-                            src={yp}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                            alt="yp"
-                        /> */}
+                        {contentArray}
                     </div>
 
                 </div>
