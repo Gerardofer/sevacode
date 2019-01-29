@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import bg from "../images/bg.jpeg";
-import sd from "../images/sd.jpeg";
-import sg from "../images/sg.jpeg";
-import gf from "../images/gf.jpeg";
-import yp from "../images/yp.jpeg";
+// import { Row, Col } from 'react-bootstrap';
+// import bg from "../images/bg.jpeg";
+// import sd from "../images/sd.jpeg";
+// import sg from "../images/sg.jpeg";
+// import gf from "../images/gf.jpeg";
+// import yp from "../images/yp.jpeg";
 
 
 const aboutUsStyles = {
@@ -46,7 +47,9 @@ const aboutUsStyles = {
         padding: 5,
         flexDirection: "column",
         marginTop: 20,
-        width: "15%",
+        width: 200,
+        height: 200,
+        justifyContent: "center",
     },
     withOpacity: {
         padding: 5,
@@ -58,22 +61,9 @@ const aboutUsStyles = {
 }
 
 class AboutUs extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-    //         opacity: 1,
-    //         padding: 5,
-    //         flexDirection: "column",
-    //         marginTop: 20,
-    //         width: "15%",
-    //     }
-    //     this.mouseEnter = this.mouseEnter.bind(this);
-    //     this.mouseLeave = this.mouseLeave.bind(this);
-    //     this.handleClick = this.handleClick.bind(this);
+    // state = {
+    //     hover: false
     // }
-    state = {
-        hover: false
-    }
 
     // mouseEnter() {
     //     console.log("mouse entered");
@@ -89,41 +79,48 @@ class AboutUs extends Component {
     //     this.setState({ opacity: 0.5 })
     // }
 
-    componentDidMount() {
-        window.addEventListener("mouseover", this.handleMouseEnter);
-    }
+    // componentDidMount() {
+    //     window.addEventListener("mouseover", this.handleMouseEnter);
+    // }
 
-    componentWillUnmount() {
-        window.removeEventListener("mouseout", this.handleMouseOut);
-    }
+    // componentWillUnmount() {
+    //     window.removeEventListener("mouseout", this.handleMouseOut);
+    // }
 
-    handleMouseEnter = (event) => {
-        console.log(event);
-        // this.setState({
-        //     hover: true,
-        // })
-    }
+    // handleMouseEnter = (event) => {
+    //     console.log(event);
+    //     // this.setState({
+    //     //     hover: true,
+    //     // })
+    // }
 
-    handleMouseOut = () => {
-        console.log("leaving");
-        this.setState({
-            hover: false,
-        })
-    }
+    // handleMouseOut = () => {
+    //     console.log("leaving");
+    //     this.setState({
+    //         hover: false,
+    //     })
+    // }
 
     render() {
-        // let pics = ["bg", "sg", "gf", "sd", "yp"];
 
-        // let imageArray = images.map(image => {
-        //     return (
-        //         < img
-        //             key={image.id}
-        //             style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-        //             src={image.img}
-        //             alt={image.id}
-        //         />
-        //     )
-        // });
+        let pics = ["bg", "sg", "gf", "sd", "yp"];
+        let bio = ["Bahadur Ghataorhe", "Sofiane Guerfus", "Gerardo Fernandez", "Sandon Du", "Yogi Patel"];
+        let contentArray = pics.map((picValue, index) => {
+            const fullName = bio[index];
+            return (
+                <div>
+                    < img
+                        key={picValue}
+                        style={aboutUsStyles.facesIndividual}
+                        src={require(`../images/${picValue}.jpeg`)}
+                        alt={picValue}
+                    />
+                    <div style={aboutUsStyles.facesDiv}>
+                        {`${fullName}`}
+                    </div>
+                </div>
+            )
+        });
 
         return (
             <section>
@@ -145,42 +142,10 @@ class AboutUs extends Component {
                     >
                         We're a group of Junior Engineers who went to a MERN Full Stack coding bootcamp together. While there, we worked on a multitude of class projects and assignments, ranging from simple To-Do lists to complex single-page applications in React. At SevaCode, you can rest assured that you won't be getting just one set of eyes on your project, there will be 5. Each of us has certification proving our skills as Full Stack Engineers, and we hope you'll choose us for your next project.
                     </p>
-
                     <div
                         style={aboutUsStyles.facesDiv}
-                        mouseon={this.handleMouseEnter}
-                        mouseoff={this.handleMouseOut}
                     >
-                        <img
-                            src={bg}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                        // mouseon={this.handleMouseEnter}
-                        // mouseoff={this.handleMouseOut}
-                        />
-                        <img
-                            src={sd}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                        // mouseon={this.handleMouseEnter}
-                        // mouseoff={this.handleMouseOut}
-                        />
-                        <img
-                            src={sg}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                        // mouseon={this.handleMouseEnter}
-                        // mouseoff={this.handleMouseOut}
-                        />
-                        <img
-                            src={gf}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                        // mouseon={this.handleMouseEnter}
-                        // mouseoff={this.handleMouseOut}
-                        />
-                        <img
-                            src={yp}
-                            style={this.state.hover === true ? aboutUsStyles.withOpacity : aboutUsStyles.facesIndividual}
-                        // mouseon={this.handleMouseEnter}
-                        // mouseoff={this.handleMouseOut}
-                        />
+                        {contentArray}
                     </div>
 
                 </div>
